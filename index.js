@@ -17,7 +17,7 @@ app.get('/n2yo', async (req, res) => {
     url += `/${req.query.lat}/${req.query.lon}/${req.query.alt}/${req.query.rad}/${req.query.cat}/&apiKey=${req.query.apikey}`;
   }
   if (api === 'positions') {
-    url += `/${req.query.id}/${req.query.lat}/${req.query.lon}/${req.query.alt}/${req.query.dur * 60}/&apiKey=${req.query.apikey}`
+    url += `/${req.query.id}/${req.query.lat}/${req.query.lon}/${req.query.alt}/${req.query.dur}/&apiKey=${req.query.apikey}`;
   }
 
   const response = await fetch(url, { 'method': 'GET' })
