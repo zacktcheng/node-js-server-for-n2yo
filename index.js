@@ -10,17 +10,17 @@ app.use(cors());
 
 app.get('/n2yo', async (req, res) => {
   
-  let url = '';
+  const api = req.query.api;
+  let url = `https://api.n2yo.com/rest/v1/satellite/${api}`;
   
-  if (req.query.api === 'above') {
-    url = `https://api.n2yo.com/rest/v1/satellite/above/${req.query.latitude}/${req.query.longitude}/${req.query.altitude}/${req.query.radius}/${req.query.category}/&apiKey=${req.query.apikey}`;
+  if (api === 'above') {
+    url += `/${req.query.lat}/${req.query.lon}/${req.query.alt}/${req.query.rad}/${req.query.cat}/&apiKey=${req.query.apikey}`;
   }
-  if (req.query.api === 'positions') {
-    url = `https://api.n2yo.com/rest/v1/satellite/positions/${req.query.id}/${req.query.latitude}/${req.query.longitude}/${req.query.altitude}/${req.query.duration * 60}/&apiKey=${req.query.apikey}`
+  if (api === 'positions') {
+    url += `/${req.query.id}/${req.query.lat}/${req.query.lon}/${req.query.alt}/${req.query.dur * 60}/&apiKey=${req.query.apikey}`
   }
-  
-  const options = { 'method': 'GET' };
-  const response = await fetch(url, options)
+
+  const response = await fetch(url, { 'method': 'GET' })
    .then(res => res.json())
    .catch(e => { 
      console.error({
