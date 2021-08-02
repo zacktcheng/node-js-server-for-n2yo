@@ -1,4 +1,5 @@
 require('dotenv').config(); //alt: require('dotenv').config({path: whaterverPath/.env})
+const port = process.env.PORT || 80;
 
 const cors = require('cors');
 const fetch = require('node-fetch');
@@ -22,6 +23,6 @@ app.get('/n2yo', async (req, res) => {
   res.send(response);
 });
 
-app.listen(5000, () => {
-  console.log(`NodeJsServerForN2YO is listening to ${HOST}:${PORT}`);
+app.listen(port, () => {
+  console.log(`Node Js Server For N2YO is listening to ${port}`);
 });
